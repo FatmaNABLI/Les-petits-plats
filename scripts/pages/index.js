@@ -7,39 +7,69 @@ let btns = document.querySelectorAll("button");
 let divListes = document.querySelectorAll(".liste");  
 
 //Remplissage liste ingredients
-getIngredients(newRecipes).forEach(ingredient => {
-    let li = document.createElement("li");
-    li.innerHTML = ingredient;
-    li.addEventListener("click",e => {
-        createTag(li.textContent  + " " , "ingredients");
-        divListes[0].style.display = "none";
-        btns[0].style.display = "block";
+
+function remplirListeingredients(recipes){
+    ulIngredients.innerHTML = "";
+    getIngredients(recipes).forEach(ingredient => {
+        let li = document.createElement("li");
+        li.innerHTML = ingredient;
+        li.addEventListener("click",e => {
+            createTag(li.textContent  + " " , "ingredients");
+            divListes[0].style.display = "none";
+            btns[0].style.display = "block";
+            //Màj des recettes
+            newRecipes = filterRecipesByIngredient(newRecipes, li.textContent);
+            displayRecipes(newRecipes);
+            remplirListeingredients(newRecipes);
+            remplirListeAppareils(newRecipes);
+            remplirListeUstensils(newRecipes);
+        })
+        ulIngredients.appendChild(li);
     })
-    ulIngredients.appendChild(li);
-})
+}
 
 //Remplissage liste appareils
-getAppareils(newRecipes).forEach(apapreil => {
-    let li = document.createElement("li");
-    li.innerHTML = apapreil;
-    li.addEventListener("click",e => {
-        createTag(li.textContent  + " " , "appareils");
-        divListes[1].style.display = "none";
-        btns[1].style.display = "block";
-    })
-    ulAppareils.appendChild(li);
-});
+function remplirListeAppareils(recipes){
+    ulAppareils.innerHTML = "";
+    getAppareils(recipes).forEach(apapreil => {
+        let li = document.createElement("li");
+        li.innerHTML = apapreil;
+        li.addEventListener("click",e => {
+            createTag(li.textContent  + " " , "appareils");
+            divListes[1].style.display = "none";
+            btns[1].style.display = "block";
+            //Màj des recettes
+            newRecipes = filterRecipesByAppliance(newRecipes, li.textContent);
+            displayRecipes(newRecipes);
+            remplirListeingredients(newRecipes);
+            remplirListeAppareils(newRecipes);
+            remplirListeUstensils(newRecipes);
+        })
+        ulAppareils.appendChild(li);
+    });
+}
+
 //Remplissage liste ustensiles
-getUstensils(newRecipes).forEach(ustensil => {
-    let li = document.createElement("li");
-    li.innerHTML = ustensil;
-    li.addEventListener("click",e => {
-        createTag(li.textContent  + " " , "ustensils");
-        divListes[2].style.display = "none";
-        btns[2].style.display = "block";
-    })
-    ulUstensils.appendChild(li);
-});
+function remplirListeUstensils(recipes){
+    ulUstensils.innerHTML = "";
+    getUstensils(recipes).forEach(ustensil => {
+        let li = document.createElement("li");
+        li.innerHTML = ustensil;
+        li.addEventListener("click",e => {
+            createTag(li.textContent  + " " , "ustensils");
+            divListes[2].style.display = "none";
+            btns[2].style.display = "block";
+            //Màj des recettes
+            newRecipes = filterRecipesByUstensil(newRecipes, li.textContent);
+            displayRecipes(newRecipes);
+            remplirListeingredients(newRecipes);
+            remplirListeAppareils(newRecipes);
+            remplirListeUstensils(newRecipes);
+        })
+        ulUstensils.appendChild(li);
+    });
+}
+
 //Création d'un tag selon le type (ingredient , appareil, ustensil)
 function createTag(contenu , type){
     let li = document.createElement("li");
@@ -55,9 +85,8 @@ function createTag(contenu , type){
 }
 
 
-function displayData() {
-  
-
+function displayRecipes(recipes){
+    document.getElementById("recipes").innerHTML = "";
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
         const recipeCardDOM = recipeModel.getRecipeCardDOM();
@@ -65,11 +94,14 @@ function displayData() {
     });
 }
 
+//1er affichage
+function displayData() {
+  
+    remplirListeingredients(newRecipes);
+    remplirListeAppareils(newRecipes);
+    remplirListeUstensils(newRecipes);
+    displayRecipes(newRecipes);
+}
 
-document.querySelectorAll(".tag").forEach(tag => tag.addEventListener("click",e => {
-
-    console.log(e.target);
-    //e.target.lastChild.style.display = "block";
-}));
 
 displayData();

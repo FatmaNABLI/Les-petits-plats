@@ -3,13 +3,17 @@ let ulIngredients = document.getElementById("liste_ingredients");
 let ulAppareils = document.getElementById("liste_appareils");
 let ulUstensils= document.getElementById("liste_ustensils");
 let ulTags = document.getElementById("liste_tags");
+let btns = document.querySelectorAll("button");
+let divListes = document.querySelectorAll(".liste");  
 
 //Remplissage liste ingredients
 getIngredients(newRecipes).forEach(ingredient => {
     let li = document.createElement("li");
     li.innerHTML = ingredient;
     li.addEventListener("click",e => {
-        createTag(li.textContent  + " " , "ingredients")
+        createTag(li.textContent  + " " , "ingredients");
+        divListes[0].style.display = "none";
+        btns[0].style.display = "block";
     })
     ulIngredients.appendChild(li);
 })
@@ -19,7 +23,9 @@ getAppareils(newRecipes).forEach(apapreil => {
     let li = document.createElement("li");
     li.innerHTML = apapreil;
     li.addEventListener("click",e => {
-        createTag(li.textContent  + " " , "appareils")
+        createTag(li.textContent  + " " , "appareils");
+        divListes[1].style.display = "none";
+        btns[1].style.display = "block";
     })
     ulAppareils.appendChild(li);
 });
@@ -28,7 +34,9 @@ getUstensils(newRecipes).forEach(ustensil => {
     let li = document.createElement("li");
     li.innerHTML = ustensil;
     li.addEventListener("click",e => {
-        createTag(li.textContent  + " " , "ustensils")
+        createTag(li.textContent  + " " , "ustensils");
+        divListes[2].style.display = "none";
+        btns[2].style.display = "block";
     })
     ulUstensils.appendChild(li);
 });

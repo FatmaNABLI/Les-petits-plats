@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Lien pour google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--Lien pour le Kit fontawesome-->
+    <script
+      src="https://kit.fontawesome.com/4d8bb3e50e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--Feuille de style personalisée-->
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Les petits plats</title>
+  </head>
+
+  <body>
+    <header>
+      <img src="assets/logo.svg" alt="Logo Les petits plats" />
+      <h1>Les petits plats</h1>
+    </header>
+    <main>
+      <div id="recherche_principale">
+        <form action="">
+          <input
+            type="text"
+            id="recherche_principale_input"
+            placeholder="Rechercher une recette"
+          />
+          <i class="fas fa-search"></i>
+        </form>
+      </div>
+      <div id="tags"></div>
+      <div class="selection">
+        <div class="tag dropdown opened" id="ingredients">
+          <!--<span>Ingredients</span>-->
+          <svg
+            width="16"
+            height="11"
+            viewBox="0 0 16 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
+              fill="white"
+            />
+          </svg>
+          <div class="liste dropdown_content" id="liste_ingredients">
+            <input type="text" placeholder="Rechercher un ingrédient" />
+            <ul>
+              <li>Citron</li>
+              <li>Ail</li>
+              <li>Persil</li>
+              <li>Poisson</li>
+              <li>Cumin</li>
+              <li>Poivre</li>
+              <li>Sel</li>
+              <li>Huile</li>
+              <li>Oignon</li>
+              <li>Piment</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tag closed" id="appareils">
+          Appareils
+          <svg
+            width="16"
+            height="11"
+            viewBox="0 0 16 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="tag closed" id="ustensils">
+          Ustensils
+          <svg
+            width="16"
+            height="11"
+            viewBox="0 0 16 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
+              fill="white"
+            />
+          </svg>
+          <ul class="liste"></ul>
+        </div>
+      </div>
+      <div id="recipes">
+        <article class="carte">
+          <div class="carte_img"></div>
+          <div class="carte_body">
+            <div class="carte_title">
+              <h2>Mon Titre</h2>
+              <span class="time"><i class="far fa-clock"></i> 20mn</span>
+            </div>
+            <div class="carte_infos">
+              <ul class="carte_ingredients">
+                <li class="carte_ingredient">
+                  Ingredient 1 : <span class="quantity"> 20 </span>
+                </li>
+                <li class="carte_ingredient">
+                  Ingredient 2 : <span class="quantity"></span>
+                </li>
+                <li class="carte_ingredient">
+                  Ingredient 3 : <span class="quantity"></span>
+                </li>
+              </ul>
+              <p class="carte_description">
+                Mettre les glaçons à votre goût dans le blender, ajouter le
+                lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer
+                jusqu'à avoir la consistence désirée le jus de 2 citrons et le
+                sucre. Mixer jusqu'à avoir la consistence désirée
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <script src="data/recipes.js"></script>
+    <script src="scripts/factories/recipe.js"></script>
+    <script src="scripts/utils/all.js"></script>
+    <script src="scripts/utils/filter.js"></script>
+    <script src="scripts/pages/index.js"></script>
+  </body>
+</html>

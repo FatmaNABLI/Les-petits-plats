@@ -1,3 +1,5 @@
+
+
 function filterRecipesByAppliance(recipes, appliance){
     let newRecipes = [];
     newRecipes = recipes.filter(recipe => recipe.appliance.toLowerCase() == appliance.toLowerCase());

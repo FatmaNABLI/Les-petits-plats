@@ -1,19 +1,39 @@
 let newRecipes = recipes;
 let ulIngredients = document.getElementById("liste_ingredients");
+let ulAppareils = document.getElementById("liste_appareils");
+let ulUstensils= document.getElementById("liste_ustensils");
 let ulTags = document.getElementById("liste_tags");
+
 //Remplissage liste ingredients
 getIngredients(newRecipes).forEach(ingredient => {
     let li = document.createElement("li");
     li.innerHTML = ingredient;
-    li.addEventListener("click" ,e => {
-        createtag(li.textContent, "ingredients")
-        console.log(li.textContent);
+    li.addEventListener("click",e => {
+        createTag(li.textContent  + " " , "ingredients")
     })
     ulIngredients.appendChild(li);
-
-   
 })
-function createtag(contenu , type){
+
+//Remplissage liste appareils
+getAppareils(newRecipes).forEach(apapreil => {
+    let li = document.createElement("li");
+    li.innerHTML = apapreil;
+    li.addEventListener("click",e => {
+        createTag(li.textContent  + " " , "appareils")
+    })
+    ulAppareils.appendChild(li);
+});
+//Remplissage liste ustensiles
+getUstensils(newRecipes).forEach(ustensil => {
+    let li = document.createElement("li");
+    li.innerHTML = ustensil;
+    li.addEventListener("click",e => {
+        createTag(li.textContent  + " " , "ustensils")
+    })
+    ulUstensils.appendChild(li);
+});
+//Création d'un tag selon le type (ingredient , appareil, ustensil)
+function createTag(contenu , type){
     let li = document.createElement("li");
     li.innerHTML = contenu;
     li.classList.add(type);
@@ -25,6 +45,8 @@ function createtag(contenu , type){
     });
     li.append(i);
 }
+
+
 function displayData() {
   
 

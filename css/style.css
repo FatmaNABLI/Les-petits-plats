@@ -64,9 +64,17 @@ form i {
 #liste_tags li{
 list-style-type: none;
 display: inline-block;
-padding: 5px;
+padding: 5px 10px;
+color: #fff;
 margin-right: 10px;
 border-radius: 5px;
+}
+
+#liste_tags li i{
+    padding: 2px;
+    border : 1px solid #fff;
+    border-radius: 40%;
+    cursor: pointer;
 }
 
 #selections {

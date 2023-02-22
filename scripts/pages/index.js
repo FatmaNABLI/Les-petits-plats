@@ -78,8 +78,33 @@ function createTag(contenu , type){
     ulTags.appendChild(li);
     let i = document.createElement("i");
     i.classList.add("fas","fa-times");
+    //Suppression d'un tag
     i.addEventListener("click", e => {
         e.target.parentElement.remove();
+        //parcourir la liste des tags et re-filtrer les recettes
+        let ulTags = document.getElementById("liste_tags");
+        let li = ulTags.children;
+        newRecipes = recipes;
+        if(li.length !=0 ){
+            for(let i = 0 ; i< li.length ; i++){
+                //console.log(li[i].className);
+                //console.log(li[i].textContent);
+                if(li[i].className == "ingredients"){
+                    newRecipes = filterRecipesByIngredient(newRecipes, li[i].textContent.trim());
+                }
+                else if(li[i].className == "ustensils"){
+                    newRecipes = filterRecipesByUstensil(newRecipes, li[i].textContent.trim());
+                }
+                else{
+                    newRecipes = filterRecipesByAppliance(newRecipes, li[i].textContent.trim());
+                }
+            }
+        }
+        displayRecipes(newRecipes);
+        remplirListeingredients(newRecipes);
+        remplirListeAppareils(newRecipes);
+        remplirListeUstensils(newRecipes);
+
     });
     li.append(i);
 }

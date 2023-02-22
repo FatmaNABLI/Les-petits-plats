@@ -3,7 +3,6 @@
 function filterRecipesByAppliance(recipes, appliance){
     let newRecipes = [];
     newRecipes = recipes.filter(recipe => recipe.appliance.toLowerCase() == appliance.toLowerCase());
-    console.log(newRecipes);
     return newRecipes;
 }
 
@@ -14,14 +13,13 @@ function filterRecipesByIngredient(recipes, ingredient){
         newRecipes.push(recipe);
     }
    });
-   console.log(newRecipes);
    return newRecipes; 
 }
 
 function filterRecipesByUstensil(recipes, ustensil){
     let newRecipes = [];
     recipes.forEach(recipe => {
-     if(recipe.ustensils.findIndex(eltUstensil => eltUstensil.toLowerCase() == ustensil.toLowerCstensilase()) != -1){
+     if(recipe.ustensils.findIndex(eltUstensil => eltUstensil.toLowerCase() == ustensil.toLowerCase()) != -1){
          newRecipes.push(recipe);
      }
     });

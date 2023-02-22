@@ -15,7 +15,6 @@ function getIngredients(recipes) {
             }
         });
     });
-    //console.log(allIngredients);
     return (allIngredients); 
 }
 
@@ -34,7 +33,6 @@ function getUstensils (recipes) {
             }
         })
     });
-    //console.log(allUstensils);
     return (allUstensils);
 }
 
@@ -50,7 +48,6 @@ function getAppareils(recipes){
             }
         }
     });
-    console.log(allAppareils);
     return (allAppareils);
 }
 
@@ -103,4 +100,4 @@ function getIngredientsAppareilsUstensils(recipes){
     return all;
 }
 
-console.log(getIngredientsAppareilsUstensils(recipes));
+//console.log(getIngredientsAppareilsUstensils(recipes));

@@ -15,8 +15,8 @@ function remplirListeingredients(recipes){
         li.innerHTML = ingredient;
         li.addEventListener("click",e => {
             createTag(li.textContent  + " " , "ingredients");
-            divListes[0].style.display = "none";
-            btns[0].style.display = "block";
+            //divListes[0].style.display = "none";
+            //btns[0].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByIngredient(newRecipes, li.textContent);
             displayRecipes(newRecipes);

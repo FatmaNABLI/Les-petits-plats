@@ -2,10 +2,15 @@ document.querySelectorAll("button").forEach(btn => btn.addEventListener("click",
 
     document.querySelectorAll("button").forEach(btn => btn.style.display = "block");
     document.querySelectorAll(".liste").forEach(liste => liste.style.display = "none");
-  
-    e.target.style.display = "none";
-    e.target.nextElementSibling.style.display = "block";
-    
+
+    if (e.target.tagName == "button"){
+        e.target.style.display = "none";
+        e.target.nextElementSibling.style.display = "block";
+    }else{
+        e.target.parentElement.style.display = "none";
+        e.target.parentElement.nextElementSibling.style.display = "block";
+    }
+ 
 })
 );
 

@@ -1,8 +1,22 @@
 let input = document.getElementById("recherche_principale_input");
 
 input.addEventListener("keyup" , event => {
-    console.log(event.code);
-    console.log(input.value);
-    console.log("*****************")
-    //str.toLowerCase().includes(substr)
+   
+    let substring = input.value;
+    if (substring.length >= 3){
+        newRecipes = findSubstringInRecipes(newRecipes, substring);
+        displayData();
+    }
+    
 });
+
+function findSubstringInRecipes(recipes, substring){
+    let newRecipes = [];
+    //Recherche dans le titre et la description
+    newRecipes = recipes.filter( recipe => recipe.name.toLowerCase().includes(substring.toLowerCase())  || recipe.description.toLowerCase().includes(substring.toLowerCase())
+    //|| recipe.ingredients.findIndex(ingred => ingred.ingredient.toLowerCase().includes(substring.toLowerCase())) != -1
+    ); 
+    //
+    console.log(newRecipes);
+    return newRecipes;
+} 

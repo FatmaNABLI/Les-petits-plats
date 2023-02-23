@@ -61,10 +61,11 @@ function remplirListeUstensils(recipes){
             btns[2].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByUstensil(newRecipes, li.textContent);
-            displayRecipes(newRecipes);
+            /*displayRecipes(newRecipes);
             remplirListeingredients(newRecipes);
             remplirListeAppareils(newRecipes);
-            remplirListeUstensils(newRecipes);
+            remplirListeUstensils(newRecipes);*/
+            displayData();
         })
         ulUstensils.appendChild(li);
     });

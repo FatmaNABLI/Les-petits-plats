@@ -14,7 +14,7 @@ function findSubstringInRecipes(recipes, substring){
     let newRecipes = [];
     //Recherche dans le titre et la description
     newRecipes = recipes.filter( recipe => recipe.name.toLowerCase().includes(substring.toLowerCase())  || recipe.description.toLowerCase().includes(substring.toLowerCase())
-    //|| recipe.ingredients.findIndex(ingred => ingred.ingredient.toLowerCase().includes(substring.toLowerCase())) != -1
+    || recipe.ingredients.findIndex(ingred => ingred.ingredient.toLowerCase().includes(substring.toLowerCase())) != -1
     ); 
     //
     console.log(newRecipes);

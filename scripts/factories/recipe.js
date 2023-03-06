@@ -57,10 +57,10 @@ function recipeFactory(data) {
             li.setAttribute("class","carte_ingredient");
             li.textContent = element.ingredient;
             if(element.hasOwnProperty("quantity")){
-                li.textContent += ":" + element.quantity;
+                li.textContent += " : " + element.quantity;
             }
             if(element.hasOwnProperty("unit")){
-                li.textContent += element.unit;
+                li.textContent += " " + element.unit;
             }
 
             ul.appendChild(li);

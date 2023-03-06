@@ -10,7 +10,12 @@ let divListes = document.querySelectorAll(".liste");
 
 function remplirListeingredients(recipes){
     ulIngredients.innerHTML = "";
-    getIngredients(recipes).forEach(ingredient => {
+    let ingredients = getIngredients(recipes);
+    ingredients.sort((a,b) => {
+        return (a.localeCompare(b));
+    }
+    );
+    ingredients.forEach(ingredient => {
         let li = document.createElement("li");
         li.innerHTML = ingredient;
         li.addEventListener("click",e => {
@@ -19,10 +24,7 @@ function remplirListeingredients(recipes){
             //btns[0].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByIngredient(newRecipes, li.textContent);
-            displayRecipes(newRecipes);
-            remplirListeingredients(newRecipes);
-            remplirListeAppareils(newRecipes);
-            remplirListeUstensils(newRecipes);
+            displayData(newRecipes);
         })
         ulIngredients.appendChild(li);
     })
@@ -31,19 +33,20 @@ function remplirListeingredients(recipes){
 //Remplissage liste appareils
 function remplirListeAppareils(recipes){
     ulAppareils.innerHTML = "";
-    getAppareils(recipes).forEach(apapreil => {
+    let appareils = getAppareils(recipes);
+    appareils.sort((a,b) => {
+        return (a.localeCompare(b));
+    });
+    appareils.forEach(apapreil => {
         let li = document.createElement("li");
         li.innerHTML = apapreil;
         li.addEventListener("click",e => {
             createTag(li.textContent  + " " , "appareils");
-            divListes[1].style.display = "none";
-            btns[1].style.display = "block";
+            //divListes[1].style.display = "none";
+            //btns[1].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByAppliance(newRecipes, li.textContent);
-            displayRecipes(newRecipes);
-            remplirListeingredients(newRecipes);
-            remplirListeAppareils(newRecipes);
-            remplirListeUstensils(newRecipes);
+            displayData(newRecipes);
         })
         ulAppareils.appendChild(li);
     });
@@ -52,20 +55,20 @@ function remplirListeAppareils(recipes){
 //Remplissage liste ustensiles
 function remplirListeUstensils(recipes){
     ulUstensils.innerHTML = "";
-    getUstensils(recipes).forEach(ustensil => {
+    let ustensils = getUstensils(recipes);
+    ustensils.sort((a,b) => {
+        return (a.localeCompare(b));
+    });
+   ustensils.forEach(ustensil => {
         let li = document.createElement("li");
         li.innerHTML = ustensil;
         li.addEventListener("click",e => {
             createTag(li.textContent  + " " , "ustensils");
-            divListes[2].style.display = "none";
-            btns[2].style.display = "block";
+            //divListes[2].style.display = "none";
+            //btns[2].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByUstensil(newRecipes, li.textContent);
-            /*displayRecipes(newRecipes);
-            remplirListeingredients(newRecipes);
-            remplirListeAppareils(newRecipes);
-            remplirListeUstensils(newRecipes);*/
-            displayData();
+            displayData(newRecipes);
         })
         ulUstensils.appendChild(li);
     });
@@ -85,6 +88,7 @@ function createTag(contenu , type){
         //parcourir la liste des tags et re-filtrer les recettes
         let ulTags = document.getElementById("liste_tags");
         let li = ulTags.children;
+        //S'il n'y a pas de recherche avancée
         newRecipes = recipes;
         if(li.length !=0 ){
             for(let i = 0 ; i< li.length ; i++){
@@ -101,10 +105,11 @@ function createTag(contenu , type){
                 }
             }
         }
-        displayRecipes(newRecipes);
+        /*displayRecipes(newRecipes);
         remplirListeingredients(newRecipes);
         remplirListeAppareils(newRecipes);
-        remplirListeUstensils(newRecipes);
+        remplirListeUstensils(newRecipes);*/
+        displayData(newRecipes);
 
     });
     li.append(i);
@@ -121,7 +126,7 @@ function displayRecipes(recipes){
 }
 
 //1er affichage
-function displayData() {
+function displayData(newRecipes) {
   
     remplirListeingredients(newRecipes);
     remplirListeAppareils(newRecipes);
@@ -130,4 +135,4 @@ function displayData() {
 }
 
 
-displayData();
+displayData(newRecipes);

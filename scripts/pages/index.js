@@ -6,8 +6,24 @@ let ulTags = document.getElementById("liste_tags");
 let btns = document.querySelectorAll("button");
 let divListes = document.querySelectorAll(".liste");  
 
-//Remplissage liste ingredients
+//Liste des ingredients, ustensils et appareils
+let sortedIngredients = [];
+let sortedAppareils = [];
+let sortedUstensils = [];
 
+//Recherche à partir des input dans les filtres (ingredients, ustensils, appareils)
+document.querySelectorAll(".input-filtre").forEach(input => input.addEventListener("keyup", e => {
+   let substring  = input.value;
+   console.log(input.getAttribute("data-type"));
+   if (input.getAttribute("data-type") == "ingred"){
+    let newIngred = sortedIngredients.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
+    remplirListeingredientsByIngred(newIngred);
+   }
+    
+})
+);
+
+//Remplissage liste ingredients
 function remplirListeingredients(recipes){
     ulIngredients.innerHTML = "";
     let ingredients = getIngredients(recipes);
@@ -15,6 +31,7 @@ function remplirListeingredients(recipes){
         return (a.localeCompare(b));
     }
     );
+    sortedIngredients = ingredients;
     ingredients.forEach(ingredient => {
         let li = document.createElement("li");
         li.innerHTML = ingredient;
@@ -37,6 +54,7 @@ function remplirListeAppareils(recipes){
     appareils.sort((a,b) => {
         return (a.localeCompare(b));
     });
+    sortedAppareils = appareils;
     appareils.forEach(apapreil => {
         let li = document.createElement("li");
         li.innerHTML = apapreil;
@@ -59,6 +77,7 @@ function remplirListeUstensils(recipes){
     ustensils.sort((a,b) => {
         return (a.localeCompare(b));
     });
+    sortedUstensils = ustensils;
    ustensils.forEach(ustensil => {
         let li = document.createElement("li");
         li.innerHTML = ustensil;
@@ -125,7 +144,7 @@ function displayRecipes(recipes){
     });
 }
 
-//1er affichage
+
 function displayData(newRecipes) {
   
     remplirListeingredients(newRecipes);
@@ -134,5 +153,5 @@ function displayData(newRecipes) {
     displayRecipes(newRecipes);
 }
 
-
+//1er affichage
 displayData(newRecipes);

@@ -14,10 +14,15 @@ let sortedUstensils = [];
 //Recherche à partir des input dans les filtres (ingredients, ustensils, appareils)
 document.querySelectorAll(".input-filtre").forEach(input => input.addEventListener("keyup", e => {
    let substring  = input.value;
-   console.log(input.getAttribute("data-type"));
    if (input.getAttribute("data-type") == "ingred"){
-    let newIngred = sortedIngredients.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
-    remplirListeingredientsByIngred(newIngred);
+        let newIngred = sortedIngredients.filter(ingredient => ingredient.toLowerCase().includes(substring.toLowerCase()));
+        remplirListeingredientsByIngred(newIngred);
+   } else if (input.getAttribute("data-type") == "appareil"){
+        let newApp = sortedAppareils.filter(appareil => appareil.toLowerCase().includes(substring.toLowerCase()));
+        remplirListeAppareilsByAppareils(newApp);
+   }else{
+    let newUst = sortedUstensils.filter(ustensil => ustensil.toLowerCase().includes(substring.toLowerCase()));
+    remplirListeUstensilsByUstens(newUst);
    }
     
 })

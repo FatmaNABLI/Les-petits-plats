@@ -6,9 +6,13 @@ function remplirListeingredientsByIngred(ingredients){
         li.innerHTML = ingredient;
         li.addEventListener("click",e => {
             createTag(li.textContent  + " " , "ingredients");
-            //Màj des recettes
+            //Màj des recettes 
             newRecipes = filterRecipesByIngredient(newRecipes, li.textContent);
-            displayData(newRecipes);
+            if(researchByKeyWord == false){
+                displayData(newRecipes);
+            }else{
+                displayData(intersection(newRecipes, newRecipesByKeyword));
+            }
         })
         ulIngredients.appendChild(li);
     })
@@ -23,7 +27,11 @@ function remplirListeAppareilsByAppareils(appareils){
             createTag(li.textContent  + " " , "appareils");
             //Màj des recettes
             newRecipes = filterRecipesByAppliance(newRecipes, li.textContent);
-            displayData(newRecipes);
+            if(researchByKeyWord == false){
+                displayData(newRecipes);
+            }else{
+                displayData(intersection(newRecipes, newRecipesByKeyword));
+            }
         })
         ulAppareils.appendChild(li);
     });
@@ -39,7 +47,11 @@ function remplirListeUstensilsByUstens(ustenils){
             createTag(li.textContent  + " " , "ustensils");
             //Màj des recettes
             newRecipes = filterRecipesByUstensil(newRecipes, li.textContent);
-            displayData(newRecipes);
+            if(researchByKeyWord == false){
+                displayData(newRecipes);
+            }else{
+                displayData(intersection(newRecipes, newRecipesByKeyword));
+            }
         })
         ulUstensils.appendChild(li);
     });
@@ -64,7 +76,12 @@ function remplirListeingredients(recipes){
             //btns[0].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByIngredient(newRecipes, li.textContent);
-            displayData(newRecipes);
+            if(researchByKeyWord == false){
+                displayData(newRecipes);
+            }else{
+                displayData(intersection(newRecipes, newRecipesByKeyword));
+            }
+           
         })
         ulIngredients.appendChild(li);
     })
@@ -87,7 +104,11 @@ function remplirListeAppareils(recipes){
             //btns[1].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByAppliance(newRecipes, li.textContent);
-            displayData(newRecipes);
+            if(researchByKeyWord == false){
+                displayData(newRecipes);
+            }else{
+                displayData(intersection(newRecipes, newRecipesByKeyword));
+            }
         })
         ulAppareils.appendChild(li);
     });
@@ -110,7 +131,11 @@ function remplirListeUstensils(recipes){
             //btns[2].style.display = "block";
             //Màj des recettes
             newRecipes = filterRecipesByUstensil(newRecipes, li.textContent);
-            displayData(newRecipes);
+            if(researchByKeyWord == false){
+                displayData(newRecipes);
+            }else{
+                displayData(intersection(newRecipes, newRecipesByKeyword));
+            }
         })
         ulUstensils.appendChild(li);
     });

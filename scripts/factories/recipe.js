@@ -7,11 +7,15 @@ function recipeFactory(data) {
 
         const divImg = document.createElement("div");
         divImg.setAttribute("class","carte_img");
+        
+        const picture = `assets/recipies/${name}.jpg`;
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        //console.log(image);
+        divImg.appendChild(img);
 
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
-
-
 
         article.appendChild(divImg);
         article.appendChild(getCardBody());

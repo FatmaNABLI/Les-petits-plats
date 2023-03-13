@@ -1,4 +1,9 @@
 let newRecipes = recipes;
+let newRecipesByKeyword = [];
+let researchByKeyWord = false;
+let researchByfiltre = false;
+
+//DOM elements
 let ulIngredients = document.getElementById("liste_ingredients");
 let ulAppareils = document.getElementById("liste_appareils");
 let ulUstensils= document.getElementById("liste_ustensils");
@@ -28,78 +33,9 @@ document.querySelectorAll(".input-filtre").forEach(input => input.addEventListen
 })
 );
 
-//Remplissage liste ingredients
-function remplirListeingredients(recipes){
-    ulIngredients.innerHTML = "";
-    let ingredients = getIngredients(recipes);
-    ingredients.sort((a,b) => {
-        return (a.localeCompare(b));
-    }
-    );
-    sortedIngredients = ingredients;
-    ingredients.forEach(ingredient => {
-        let li = document.createElement("li");
-        li.innerHTML = ingredient;
-        li.addEventListener("click",e => {
-            createTag(li.textContent  + " " , "ingredients");
-            //divListes[0].style.display = "none";
-            //btns[0].style.display = "block";
-            //Màj des recettes
-            newRecipes = filterRecipesByIngredient(newRecipes, li.textContent);
-            displayData(newRecipes);
-        })
-        ulIngredients.appendChild(li);
-    })
-}
-
-//Remplissage liste appareils
-function remplirListeAppareils(recipes){
-    ulAppareils.innerHTML = "";
-    let appareils = getAppareils(recipes);
-    appareils.sort((a,b) => {
-        return (a.localeCompare(b));
-    });
-    sortedAppareils = appareils;
-    appareils.forEach(apapreil => {
-        let li = document.createElement("li");
-        li.innerHTML = apapreil;
-        li.addEventListener("click",e => {
-            createTag(li.textContent  + " " , "appareils");
-            //divListes[1].style.display = "none";
-            //btns[1].style.display = "block";
-            //Màj des recettes
-            newRecipes = filterRecipesByAppliance(newRecipes, li.textContent);
-            displayData(newRecipes);
-        })
-        ulAppareils.appendChild(li);
-    });
-}
-
-//Remplissage liste ustensiles
-function remplirListeUstensils(recipes){
-    ulUstensils.innerHTML = "";
-    let ustensils = getUstensils(recipes);
-    ustensils.sort((a,b) => {
-        return (a.localeCompare(b));
-    });
-    sortedUstensils = ustensils;
-   ustensils.forEach(ustensil => {
-        let li = document.createElement("li");
-        li.innerHTML = ustensil;
-        li.addEventListener("click",e => {
-            createTag(li.textContent  + " " , "ustensils");
-            //divListes[2].style.display = "none";
-            //btns[2].style.display = "block";
-            //Màj des recettes
-            newRecipes = filterRecipesByUstensil(newRecipes, li.textContent);
-            displayData(newRecipes);
-        })
-        ulUstensils.appendChild(li);
-    });
-}
-
 //Création d'un tag selon le type (ingredient , appareil, ustensil)
 function createTag(contenu , type){
+    researchByfiltre = true;
     let li = document.createElement("li");
     li.innerHTML = contenu;
     li.classList.add(type);
@@ -128,12 +64,19 @@ function createTag(contenu , type){
                     newRecipes = filterRecipesByAppliance(newRecipes, li[i].textContent.trim());
                 }
             }
+            displayData(newRecipes);
+        }else{
+            //S'il n'y a plus de tag, onteste s'il y a une recherche avancée en cours
+            //Si oui : on affiche la liste des recettes filtrées par mot de passe
+            //Si non : on affiche la liste de toutes les recettes
+            researchByfiltre = false;
+            if(researchByKeyWord == false){
+                displayData(recipes);
+            }else{
+                displayData(newRecipesByKeyword);
+            }
         }
-        /*displayRecipes(newRecipes);
-        remplirListeingredients(newRecipes);
-        remplirListeAppareils(newRecipes);
-        remplirListeUstensils(newRecipes);*/
-        displayData(newRecipes);
+        
 
     });
     li.append(i);
